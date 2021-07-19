@@ -57,9 +57,9 @@ const actions = {
             commit('setLoggedIn', (localStorage.getItem("refreshToken") != null));
             commit('setUsername', localStorage.getItem("username"))
 
-            this.$router.push('/home');
+            this.$router.push('/');
         })
-    }
+    },
 }
 
 const mutations = {

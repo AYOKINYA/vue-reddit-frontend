@@ -1,17 +1,24 @@
 <template>
     <div>
-        <div class="login-section">
+        <div class="register-section">
             <div class="row justify-content-center">
             <div class="col-md-3"></div>
             <div class="col-md-6">
             
             <div class="card">
                 <div class="card-header" style="text-align: center;">
-                    <h4>Login</h4>
+                    <h4>Register</h4>
                 </div>
 
                 <div class="card-body">
-                    <form @submit="onSubmit">
+                    <form @submit="signUp">
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+                        <div class="col-md-6">
+                            <input type="text" id="email_address" class="form-control" v-model="emailId" required autoFocus />  
+                        </div>    
+                    </div>
+
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">User Name</label>
                         <div class="col-md-6">
@@ -27,10 +34,10 @@
                     </div>
 
                     <span class="col-md-6 offset-md-4">
-                        <button type="submit" class="login">
-                            Login
+                        <button type="submit" class="sign-up">
+                            Sign Up
                         </button>
-                        <span style="padding-left: 15px;"> New To SpringReddit? <router-link to="/signup">Sign Up</router-link></span>
+                        <span style="padding-left: 15px;">Existing user? <router-link to="/login">Log In</router-link></span>
                     </span>
 
                     </form>
@@ -39,55 +46,52 @@
             </div>
 
             </div>
-                <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import AuthService from '../services/AuthService';
+
 export default {
-    name: 'Login',
+    name: "SignUp",
     data() {
         return {
-        userName: '',
-        password: ''
+            emailId: '',
+            userName: '',
+            password:'',
         }
     },
     methods: {
-        ...mapActions(['login']),
-        onSubmit(e) {
+        signUp(e) {
             e.preventDefault();
-            this.login(this.userName, this.password);
+            let signUpInfo = {
+                email: this.emailId,
+                username: this.userName,
+                password: this.password
+            }
+
+            console.log("inputs : " + JSON.stringify(signUpInfo));
+
+            AuthService.signUp(signUpInfo).then(res => {
+                console.log(res.data);
+                alert("SignUp Successfully!");
+                this.$router.push('/login');
+            })
         }
     }
+    
 }
 </script>
 
 <style scoped>
-
-.login-section{
+.register-section{
     margin: 100px;
 }
 
-.login-failed{
-    text-align: center;
-    margin: auto;
-    margin-top: 10px;
-    border: 2px solid black;
-    width: 65%;    
-    background-color: red;
-}
-
-.login-failed-text{
-    text-align: center;
-    margin-top: 5px;
-    font-weight: bold;    
-    color: aliceblue;
-}
-
-.login {
+.sign-up {
     background-color: #0079D3;
     border-color: #0079D3;
     color: aliceblue;
@@ -105,5 +109,4 @@ export default {
     padding: 3px 16px;
     opacity: 1;
   }
-
 </style>
