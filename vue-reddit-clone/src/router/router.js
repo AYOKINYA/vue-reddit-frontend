@@ -6,7 +6,7 @@ import Login from "../components/Login.vue"
 import SignUp from "../components/SignUp.vue"
 import CreateSubreddit from "../components/CreateSubreddit.vue"
 import SubredditList from "../components/SubredditList.vue"
-
+import CreatePost from "../components/CreatePost.vue"
 
 Vue.use(Router);
 
@@ -37,6 +37,11 @@ export default new Router({
             path: "/subreddit-list",
             name: "SubredditList",
             component: SubredditList
+        },
+        {
+            path: "/create-post",
+            name: "CreatePost",
+            component: CreatePost
         }
     ]
 })
