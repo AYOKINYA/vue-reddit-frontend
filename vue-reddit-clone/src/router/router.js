@@ -4,6 +4,9 @@ import Router from 'vue-router'
 import Home from "../components/Home.vue"
 import Login from "../components/Login.vue"
 import SignUp from "../components/SignUp.vue"
+import CreateSubreddit from "../components/CreateSubreddit.vue"
+import SubredditList from "../components/SubredditList.vue"
+
 
 Vue.use(Router);
 
@@ -24,6 +27,16 @@ export default new Router({
             path: "/signup",
             name: "SignUp",
             component: SignUp
+        },
+        {
+            path: "/create-subreddit",
+            name: "CreateSubreddit",
+            component: CreateSubreddit
+        },
+        {
+            path: "/subreddit-list",
+            name: "SubredditList",
+            component: SubredditList
         }
     ]
 })

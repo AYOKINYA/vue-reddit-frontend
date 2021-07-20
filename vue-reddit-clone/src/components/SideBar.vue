@@ -6,10 +6,10 @@
             Come here to check in with your favorite subreddits.
         </div>
         <div style="text-align: center;">
-            <button class="btnCreatePost" onClick={this.createPost}>Create Post</button>
+            <button class="btnCreatePost" @click="$router.push('/create-post')">Create Post</button>
         </div>
         <div style="text-align: center;">
-            <button class="btnCreateSubreddit" onClick={this.createSubreddit}>Create Subreddit</button>
+            <button class="btnCreateSubreddit" @click="$router.push('/create-subreddit')">Create Subreddit</button>
         </div>
     </div>
 </template>
