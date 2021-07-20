@@ -1,4 +1,5 @@
 import AuthService from '../../services/AuthService';
+import router from '../../router/router';
 
 const state = {
     isLoggedIn: (localStorage.getItem("refreshToken") != null),
@@ -32,18 +33,12 @@ const actions = {
             commit('setLoggedIn', (localStorage.getItem("refreshToken") != null));
             commit('setUsername', localStorage.getItem("username"))
 
-            this.$router.push('/');
-        });
+            router.push({ path: '/' });
+        })
     },
 
-    login({commit}, userName, password) {
-        let loginInfo = {
-            username: userName,
-            password: password
-        }
-
-        console.log("inputs : " + JSON.stringify(loginInfo));
-
+    login({commit}, loginInfo) {
+        
         AuthService.login(loginInfo)
         .then(res => {
 
@@ -55,7 +50,7 @@ const actions = {
             commit('setLoggedIn', (localStorage.getItem("refreshToken") != null));
             commit('setUsername', localStorage.getItem("username"))
 
-            this.$router.push('/');
+            router.push({ path: '/' });
         })
     },
 }

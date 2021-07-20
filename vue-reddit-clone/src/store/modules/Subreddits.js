@@ -1,4 +1,5 @@
 import SubredditService from "../../services/SubredditService"
+import router from '../../router/router';
 
 const state = {
     subreddits: []
@@ -9,20 +10,14 @@ const getters = {
 }
 
 const actions = {
-    createSubreddit({commit}, title, description) {
-        let subreddit = {
-            name: title,
-            description: description
-        }
-
-        console.log("inputs : " + JSON.stringify(subreddit));
+    createSubreddit({commit}, subreddit) {
 
         SubredditService.createSubreddit(subreddit)
         .then(res => {
 
             commit('newSubreddits', res.data);
 
-            this.$router.push('/subreddits-list');
+            router.push('/subreddits-list');
         });
     },
 

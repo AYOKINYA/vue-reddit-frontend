@@ -54,7 +54,13 @@ export default {
         ...mapActions(['getAllSubreddits', 'createPost']),
         newPost(e) {
             e.preventDefault();
-            this.createPost(this.title, this.description, this.subredditName, this.url);
+            let post = {
+                postName: this.title,
+                description: this.description,
+                subredditName: this.subredditName,
+                url: this.url
+            }
+            this.createPost(post);
         }
     },
     computed: mapGetters(['allSubreddits']),

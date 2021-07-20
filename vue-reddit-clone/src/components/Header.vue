@@ -21,14 +21,13 @@
                     <div v-if="isLoggedIn" class="flex-grow-1 float-right">
 
                         <b-dropdown>
-                            <b-dropdown-toggle as={this.CustomToggle} id="b-dropdown-custom-components"  class="userdetails">
-                            username
-                            </b-dropdown-toggle>
+                            <div class="userdetails">
+                            {{username}}
+                            </div>
 
-                            <b-dropdown-menu>
-                            <b-dropdown-item eventKey="profile" >Profile</b-dropdown-item>
-                            <b-dropdown-item eventKey="logout" >Logout</b-dropdown-item>
-                            </b-dropdown-menu>
+                            <b-dropdown-item @click="this.$router.push(`/user-profile/${username}`)">Profile</b-dropdown-item>
+                            <b-dropdown-item @click="userLogout">Logout</b-dropdown-item>
+
                         </b-dropdown>
 
                     </div>
@@ -44,11 +43,18 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
     name: 'Header',
-    computed: mapGetters(['isLoggedIn', 'username'])
+    computed: mapGetters(['isLoggedIn', 'username']),
+    methods: {
+        ...mapActions(['logout']),
+        userLogout(e) {
+            e.preventDefault();
+            this.logout();
+        }
+    }
 }
 </script>
 

@@ -1,4 +1,5 @@
-import PostService from "../../services/PostService"
+import PostService from "../../services/PostService";
+import router from '../../router/router';
 
 const state = {
     posts: []
@@ -9,18 +10,14 @@ const getters = {
 }
 
 const actions = {
-    createPost({commit}, title, description, subredditName, url) {
-        let post = {
-            postName: title,
-            description: description,
-            subredditName: subredditName,
-            url: url
-        }
-
+    createPost({commit}, post) {
+        
         PostService.createPost(post)
         .then(res => {
             commit('newPost', res.data);
-            this.$router.push('/');
+            
+            router.push({ path: '/' });
+
         })
     }
 }

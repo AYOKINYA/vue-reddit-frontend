@@ -51,15 +51,20 @@ export default {
     name: 'Login',
     data() {
         return {
-        userName: '',
-        password: ''
+            userName: '',
+            password: ''
         }
     },
     methods: {
         ...mapActions(['login']),
         onSubmit(e) {
             e.preventDefault();
-            this.login(this.userName, this.password);
+            let loginInfo = {
+                username: this.userName,
+                password: this.password
+            }
+            console.log("inputs : " + JSON.stringify(loginInfo));
+            this.login(loginInfo);
         }
     }
 }

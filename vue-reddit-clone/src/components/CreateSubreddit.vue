@@ -53,7 +53,14 @@ export default {
         ...mapActions(['createSubreddit']),
         newSubreddit(e) {
             e.preventDefault();
-            this.createSubreddit(this.title, this.description);
+            let subreddit = {
+                name: this.title,
+                description: this.description
+            }
+
+            console.log("inputs : " + JSON.stringify(subreddit));
+
+            this.createSubreddit(subreddit);
         }
     }
     
