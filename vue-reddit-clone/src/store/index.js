@@ -4,6 +4,7 @@ import Vue from 'vue'
 import user from './modules/User'
 import subreddits from './modules/Subreddits'
 import posts from './modules/Posts'
+import comments from './modules/Comments'
 
 // Load Vuex
 Vue.use(Vuex);
@@ -14,5 +15,6 @@ export default new Vuex.Store({
         user,
         subreddits,
         posts,
+        comments
     }
 });

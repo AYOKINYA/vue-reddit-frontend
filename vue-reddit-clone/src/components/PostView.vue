@@ -18,10 +18,10 @@
                                     <span> . {{this.post.duration}} </span>
                                     by 
                                     <div v-if="this.post.userName">
-                                        <router-link to="/" className="username">{{this.post.userName}}</router-link>
+                                        <router-link to="/" class="username">{{this.post.userName}}</router-link>
                                     </div>
                                     <div v-else>
-                                        <router-link to="/" className="username">Anonymous</router-link>
+                                        <router-link to="/" class="username">Anonymous</router-link>
                                     </div>
                                 </span>
                                 <div v-if="this.isEligible()">
@@ -38,7 +38,26 @@
                             <div>
                                 <p class="post-text">{{this.post.description}}</p>
                             </div>
-
+                            <div class="post-comment">
+                                <form>
+                                <div class="form-group">
+                                    <textarea v-model="text" class="form-control" placeholder="Your Thoughts?"></textarea>
+                                </div>
+                                <button type="submit" @click="newComment" class="login float-right">Comment</button>
+                                </form>
+                            </div>
+                            <div style="margin-top: 60px;" v-for="comment in comments" :key="comment.id">
+                                    <div class="comment" key={{comment.id}}>
+                                    <div class="username">
+                                        <router-link :to="{ name: 'UserProfile', params: {username: comment.userName }}">{{comment.userName}}</router-link>
+                                    </div>
+                                    <div>
+                                        <p>{{comment.duration}}</p>
+                                    </div>
+                                    <b>{{comment.text}}</b>
+                                    </div>
+                                <hr />
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -62,12 +81,11 @@ export default {
     },
     data() {
         return {
-            comments: [],
             text: ''
         }
     },
     methods: {
-        ...mapActions(['getPost']),
+        ...mapActions(['getPost', 'createComment', 'getCommentsForPost']),
         isOwner() {
             if (this.post.userName === localStorage.getItem("username")) {
                 return true;
@@ -80,10 +98,19 @@ export default {
             }
             return false;
         },
+        newComment(e) {
+            e.preventDefault();
+            let comment = {
+                postId: this.post.id,
+                text: this.text
+            }
+            this.createComment(comment);
+        },
     },
-    computed: mapGetters(['post']),
+    computed: mapGetters(['post', 'comments']),
     created() {
         this.getPost(this.$route.params.id);
+        this.getCommentsForPost(this.$route.params.id);
     }
 }
 </script>
