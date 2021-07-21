@@ -13,9 +13,8 @@
 
                     <select v-model="subredditName" class="form-control" style="margin-top: 10px;">
                         <option defaultValue="" disabled>Select Subreddit</option>
-                        <div v-for="subreddit in allSubreddits" :key="subreddit.id">
-                            <option key={{subreddit.id}}>{{subreddit.name}}</option>
-                        </div>
+                        <option v-for="subreddit in allSubreddits" :key="subreddit.id">
+                            {{subreddit.name}}</option>
                     </select>
 
                     <textarea type="text" v-model="description" style="width: 100%; margin-top: 5px;"

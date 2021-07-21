@@ -33,7 +33,7 @@
                             </span>
                             <hr />
                             <div class="post-title">
-                                <a class="post-title" href="this.post.url">{{this.post.postName}}</a>
+                                <a class="post-title" :href="this.post.url">{{this.post.postName}}</a>
                             </div>
                             <div>
                                 <p class="post-text">{{this.post.description}}</p>

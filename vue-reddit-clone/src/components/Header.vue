@@ -25,7 +25,7 @@
                             {{username}}
                             </div>
 
-                            <b-dropdown-item @click="this.$router.push(`/user-profile/${username}`)">Profile</b-dropdown-item>
+                            <b-dropdown-item @click.native="$router.push({ name: 'UserProfile', params: {username: username }})">Profile</b-dropdown-item>
                             <b-dropdown-item @click="userLogout">Logout</b-dropdown-item>
 
                         </b-dropdown>

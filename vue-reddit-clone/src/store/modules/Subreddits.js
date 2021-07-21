@@ -23,6 +23,7 @@ const actions = {
 
     getAllSubreddits({commit}) {
         SubredditService.getAllSubreddits().then((res) => {
+            console.log(res.data);
             commit('setSubreddits', res.data);
         });
     }

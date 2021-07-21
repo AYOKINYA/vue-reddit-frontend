@@ -10,6 +10,7 @@
             <div>
                 Your Posts:
             </div>
+            <PostTile :posts="this.allPosts" />
             <hr />
             <div>
                 Your Comments:
@@ -32,9 +33,13 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import PostTile from './PostTile.vue';
 
 export default {
     name: 'UserProfile',
+    components: {
+        PostTile
+    },
     methods: {
         ...mapActions(['getPostsByUser', 'getCommentsByUser'])
     },

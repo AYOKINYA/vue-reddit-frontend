@@ -32,6 +32,11 @@ const actions = {
             commit("setPosts", res.data);
             commit("setPostsLength", res.data.length);
         });
+    },
+    getAllPosts({commit}) {
+        PostService.getAllPosts().then((res) => {
+            commit("setPosts", res.data);
+        })
     }
 }
 

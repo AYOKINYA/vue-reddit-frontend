@@ -5,7 +5,7 @@
             <div class="row">
                 <hr/>
                 <div class="col-md-9">
-
+                  <PostTile :posts="this.allPosts" />
                 </div>
                 <div class="col-md-3">
                     <SideBar/>
@@ -17,14 +17,24 @@
 </template>
 
 <script>
-
+import { mapGetters, mapActions } from 'vuex';
 import SideBar from './SideBar.vue';
+import PostTile from './PostTile.vue';
 
 export default {
   name: 'Home',
   components: {
-    SideBar
+    SideBar,
+    PostTile
   },
+  methods: {
+    ...mapActions(['getAllPosts']),
+
+  },
+  computed: mapGetters(['allPosts']),
+  created() {
+    this.getAllPosts();
+  }
 }
 </script>
 
