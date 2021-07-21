@@ -3,12 +3,14 @@ import router from '../../router/router';
 
 const state = {
     posts: [],
-    post: {}
+    post: {},
+    postsLength: 0
 }
 
 const getters = {
     allPosts: (state) => state.posts,
-    post: (state) => state.post
+    post: (state) => state.post,
+    postsLength: (state) => state.postsLength
 }
 
 const actions = {
@@ -24,13 +26,20 @@ const actions = {
         PostService.getPost(id).then((res) => {
             commit("setPost", res.data);
         });
+    },
+    getPostsByUser({commit}, username) {
+        PostService.getAllPostsByUser(username).then((res) => {
+            commit("setPosts", res.data);
+            commit("setPostsLength", res.data.length);
+        });
     }
 }
 
 const mutations = {
     setPosts: (state, posts) => state.posts = posts,
     newPost: (state, post) => state.posts.push(post),
-    setPost: (state, post) => state.post = post
+    setPost: (state, post) => state.post = post,
+    setPostsLength: (state, length) => state.postsLength = length
 }
 
 export default {

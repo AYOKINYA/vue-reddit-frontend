@@ -1,11 +1,13 @@
 import CommentService from "../../services/CommentService";
 
 const state = {
-    comments: []
+    comments: [],
+    commentsLength: 0
 }
 
 const getters = {
-    comments: (state) => state.comments
+    comments: (state) => state.comments,
+    commentsLength: (state) => state.commentsLength
 }
 
 const actions = {
@@ -17,16 +19,23 @@ const actions = {
             });
         });
     },
-    
     getCommentsForPost({commit}, id) {
         CommentService.getAllCommentsForPost(id).then((res) => {
             commit('setComments', res.data);
         });
+    },
+    getCommentsByUser({commit}, username) {
+        CommentService.getAllCommentsByUser(username).then((res) => {
+            commit('setComments', res.data);
+            commit('setCommentsLength', res.data.length);
+        });
     }
+    
 }
 
 const mutations = {
-    setComments: (state, comments) => state.comments = comments
+    setComments: (state, comments) => state.comments = comments,
+    setCommentsLength: (state, length) => state.commentsLength = length
 }
 
 export default {

@@ -3,12 +3,12 @@ import router from '../../router/router';
 
 const state = {
     isLoggedIn: (localStorage.getItem("refreshToken") != null),
-    username: localStorage.getItem("username")
+    username: localStorage.getItem("username"),
 }
 
 const getters = {
     isLoggedIn: (state) => state.isLoggedIn,
-    username: (state) => state.username
+    username: (state) => state.username,
 }
 
 const actions = {
@@ -57,7 +57,7 @@ const actions = {
 
 const mutations = {
     setUsername: (state, username) => state.username = username,
-    setLoggedIn: (state, isLoggedin) => state.isLoggedIn = isLoggedin
+    setLoggedIn: (state, isLoggedin) => state.isLoggedIn = isLoggedin,
 }
 
 export default {
