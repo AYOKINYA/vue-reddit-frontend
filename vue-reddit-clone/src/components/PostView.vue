@@ -4,9 +4,9 @@
             <div class="row">
                 <hr />
                 <div class="col-md-9">
-                    <div class="row post" key={{this.post.id}}>
+                    <div class="row post">
                         <div class="col-md-1">
-
+                            <VoteButton :post="this.post" @updatePost="updateVote"/>
                         </div>
                         <div class="col-md-11">
                             <span class="subreddit-info">
@@ -73,11 +73,13 @@
 import { mapGetters, mapActions } from 'vuex';
 import SideBar from './SideBar.vue';
 import AuthService from '../services/AuthService'
+import VoteButton from './VoteButton.vue'
 
 export default {
     name: "PostView",
     components: {
-        SideBar
+        SideBar,
+        VoteButton
     },
     data() {
         return {
@@ -106,6 +108,9 @@ export default {
             }
             this.createComment(comment);
         },
+        updateVote() {
+            this.getPost(this.$route.params.id);
+        }
     },
     computed: mapGetters(['post', 'comments']),
     created() {

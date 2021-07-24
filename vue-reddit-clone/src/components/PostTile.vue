@@ -3,7 +3,7 @@
         <div v-for="post in posts" :key="post.id">
             <div class="row post">
                 <div class="col-md-1">
-                    hi
+                    <VoteButton :post=post @updatePost="updateVote" />
                 </div>
                 <div class="col-md-11">
                     <span class="subreddit-info">
@@ -34,9 +34,21 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+import VoteButton from './VoteButton.vue';
+
 export default {
     name: 'PostTile',
-    props: ['posts']
+    props: ['posts'],
+    components: {
+        VoteButton
+    },
+    methods: {
+        ...mapActions(['getAllPosts']),
+        updateVote() {
+            this.getAllPosts();
+        }
+    }
 }
 </script>
 
