@@ -25,7 +25,7 @@
                                     </div>
                                 </span>
                                 <div v-if="this.isEligible()">
-                                    <button class="btn btn-danger float-right">DELETE</button>
+                                    <button class="btn btn-danger float-right" @click="removePost()">DELETE</button>
                                 </div>
                                 <div v-if="this.isOwner()">
                                     <button class="btn btn-info float-right" style="padding-right: 15px;">Edit</button>
@@ -62,6 +62,7 @@
                     </div>
                     <div class="col-md-3">
                         <SideBar />
+                        <SubredditSideBar/>
                     </div>
                 </div>
             </div>
@@ -74,12 +75,14 @@ import { mapGetters, mapActions } from 'vuex';
 import SideBar from './SideBar.vue';
 import AuthService from '../services/AuthService'
 import VoteButton from './VoteButton.vue'
+import SubredditSideBar from './SubredditSideBar.vue'
 
 export default {
     name: "PostView",
     components: {
         SideBar,
-        VoteButton
+        VoteButton,
+        SubredditSideBar
     },
     data() {
         return {
@@ -87,7 +90,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['getPost', 'createComment', 'getCommentsForPost']),
+        ...mapActions(['getPost', 'createComment', 'getCommentsForPost', 'removePost']),
         isOwner() {
             if (this.post.userName === localStorage.getItem("username")) {
                 return true;
@@ -110,6 +113,11 @@ export default {
         },
         updateVote() {
             this.getPost(this.$route.params.id);
+        },
+        deletePost() {
+            if (confirm("Are you sure?")) {
+                this.deletePost(this.$route.params.id);
+            }
         }
     },
     computed: mapGetters(['post', 'comments']),

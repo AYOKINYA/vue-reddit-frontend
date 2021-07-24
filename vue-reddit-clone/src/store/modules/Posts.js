@@ -33,10 +33,23 @@ const actions = {
             commit("setPostsLength", res.data.length);
         });
     },
+    getPostsBySubreddit({commit}, subredditId) {
+        PostService.getAllPostsBySubreddit(subredditId).then((res) => {
+            commit("setPosts", res.data);
+
+        });
+    },
     getAllPosts({commit}) {
         PostService.getAllPosts().then((res) => {
             commit("setPosts", res.data);
         })
+    },
+    deletePost({commit}, id) {
+         PostService.deletePost(id).then((res) => {
+            console.log(res.data);
+            commit("removePost", res.data);
+            router.push({ path: '/' });
+        });
     }
 }
 
@@ -44,7 +57,14 @@ const mutations = {
     setPosts: (state, posts) => state.posts = posts,
     newPost: (state, post) => state.posts.push(post),
     setPost: (state, post) => state.post = post,
-    setPostsLength: (state, length) => state.postsLength = length
+    setPostsLength: (state, length) => state.postsLength = length,
+    removePost: (state, id) => state.posts = state.posts.filter(post => post.id !== id),
+    updatePost: (state, updatedPost) => {
+        const index = state.todos.findIndex(post => post.id === updatedPost.id);
+        if (index !== -1) {
+            state.posts.splice(index, 1, updatedPost);
+        }
+    }
 }
 
 export default {

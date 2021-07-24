@@ -11,7 +11,7 @@
             <div v-if="isLoggedIn">
                 <div class="p-2">
                     <i class="fas fa-arrow-down downvote" @click="vote('DOWNVOTE')"
-                    :style="[post.downVote ? {color: 'green'} : {}]">Downvote</i>
+                    :style="[post.downVote ? {color: 'red'} : {}]">Downvote</i>
                 </div>
             </div>
         </div>

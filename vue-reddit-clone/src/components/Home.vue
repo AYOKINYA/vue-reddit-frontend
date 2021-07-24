@@ -9,6 +9,7 @@
                 </div>
                 <div class="col-md-3">
                     <SideBar/>
+                    <SubredditSideBar />
                 </div>
             </div>
         </div>
@@ -20,12 +21,14 @@
 import { mapGetters, mapActions } from 'vuex';
 import SideBar from './SideBar.vue';
 import PostTile from './PostTile.vue';
+import SubredditSideBar from './SubredditSideBar.vue';
 
 export default {
   name: 'Home',
   components: {
     SideBar,
-    PostTile
+    PostTile,
+    SubredditSideBar
   },
   methods: {
     ...mapActions(['getAllPosts']),

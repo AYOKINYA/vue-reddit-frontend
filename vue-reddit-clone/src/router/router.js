@@ -9,6 +9,7 @@ import SubredditList from "../components/SubredditList.vue"
 import CreatePost from "../components/CreatePost.vue"
 import PostView from "../components/PostView.vue"
 import UserProfile from "../components/UserProfile.vue"
+import SubredditView from "../components/SubredditView.vue";
 
 Vue.use(Router);
 
@@ -54,6 +55,11 @@ export default new Router({
             path: "/user-profile/:username",
             name: "UserProfile",
             component: UserProfile
+        },
+        {
+            path: "/view-subreddit/:id",
+            name: "SubredditView",
+            component: SubredditView
         }
     ]
 })
