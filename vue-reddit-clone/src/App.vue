@@ -1,7 +1,11 @@
 <template>
     <div id="app">
+      <div class="container">
         <Header />
+        <div class="container">
         <router-view />
+        </div>
+      </div>
     </div>
 </template>
 
@@ -18,6 +22,7 @@ export default {
 </script>
 
 <style>
+
 html{    
   padding: 0;
   height: 100%;  

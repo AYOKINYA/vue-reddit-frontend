@@ -2,10 +2,10 @@
     <div>
         <div v-for="post in posts" :key="post.id">
             <div class="row post">
-                <div class="col-md-1">
+                <div class="col-md-2 d-flex justify-content-center">
                     <VoteButton :post=post @updatePost="updateVote" />
                 </div>
-                <div class="col-md-11">
+                <div class="col-md-9">
                     <span class="subreddit-info">
                         <span class="subreddit-text">
                             <router-link to="/" class="posturl">{{post.subredditName}}</router-link>
