@@ -10,6 +10,7 @@ import CreatePost from "../components/CreatePost.vue"
 import PostView from "../components/PostView.vue"
 import UserProfile from "../components/UserProfile.vue"
 import SubredditView from "../components/SubredditView.vue";
+import EditPost from "../components/EditPost.vue";
 
 Vue.use(Router);
 
@@ -45,6 +46,11 @@ export default new Router({
             path: "/create-post",
             name: "CreatePost",
             component: CreatePost
+        },
+        {
+            path: "/update-post/:id",
+            name: "EditPost",
+            component: EditPost
         },
         {
             path: "/view-post/:id",

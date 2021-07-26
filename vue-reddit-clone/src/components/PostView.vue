@@ -28,7 +28,7 @@
                                     <button class="btn btn-danger float-right" @click="removePost()">DELETE</button>
                                 </div>
                                 <div v-if="this.isOwner()">
-                                    <button class="btn btn-info float-right" style="padding-right: 15px;">Edit</button>
+                                    <button class="btn btn-info float-right" @click="$router.push({ name: 'EditPost', params: {id: post.id }})" style="padding-right: 15px;">Edit</button>
                                 </div>
                             </span>
                             <hr />
@@ -115,7 +115,7 @@ export default {
             this.getPost(this.$route.params.id);
         },
         deletePost() {
-            if (confirm("Are you sure?")) {
+            if (window.confirm("Are you sure?")) {
                 this.deletePost(this.$route.params.id);
             }
         }

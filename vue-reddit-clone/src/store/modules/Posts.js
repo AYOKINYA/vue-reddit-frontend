@@ -50,6 +50,13 @@ const actions = {
             commit("removePost", res.data);
             router.push({ path: '/' });
         });
+    },
+    updatePost({commit}, info) {
+        PostService.editPost(info.id, info.post).then(res => {
+            commit('updatePost', res.data);
+            alert("The post is updated.");
+            router.push({ path: '/' });
+        })
     }
 }
 
@@ -60,7 +67,7 @@ const mutations = {
     setPostsLength: (state, length) => state.postsLength = length,
     removePost: (state, id) => state.posts = state.posts.filter(post => post.id !== id),
     updatePost: (state, updatedPost) => {
-        const index = state.todos.findIndex(post => post.id === updatedPost.id);
+        const index = state.posts.findIndex(post => post.id === updatedPost.id);
         if (index !== -1) {
             state.posts.splice(index, 1, updatedPost);
         }
