@@ -39,7 +39,7 @@ export default new Router({
             component: CreateSubreddit
         },
         {
-            path: "/subreddit-list",
+            path: "/subreddits-list",
             name: "SubredditList",
             component: SubredditList
         },

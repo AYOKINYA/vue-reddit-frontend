@@ -8,7 +8,10 @@
                 <ul>
                     <div class="subreddit" v-for="subreddit in allSubreddits" :key="subreddit.id">
                     <li>
-                        <router-link to="/view-subreddit/" + subreddit.id>{{subreddit.name}}</router-link>
+                        <router-link :to="{ name: 'SubredditView' , params: {id: subreddit.id}}">{{subreddit.name}}</router-link>
+                        <div v-if="isAdmin">
+                            <button className="btn btn-danger" @click="this.removeSubreddit(subreddit.id)" style="margin-left: 15px;">DELETE</button>
+                        </div>
                     </li>
                     </div>
                 </ul>
@@ -31,11 +34,17 @@ export default {
         SideBar
     },
     methods: {
-        ...mapActions(['getAllSubreddits'])
+        ...mapActions(['getAllSubreddits', 'deleteSubreddit', 'getUserRoles']),
+        removeSubreddit(id) {
+            if (window.confirm("Are you sure?")) {
+                this.deleteSubreddit(id);
+            }
+        }
     },
-    computed: mapGetters(['allSubreddits']),
+    computed: mapGetters(['allSubreddits', 'isAdmin']),
     created() {
         this.getAllSubreddits();
+        this.getUserRoles();
     }
 }
 </script>

@@ -47,18 +47,27 @@ const actions = {
             }
         });
     },
+    
+    deleteSubreddit({commit}, id) {
+        SubredditService.deleteSubreddit(id).then((res) => {
+            commit('removeSubreddit', res.data);
+        })
+    }
 }
 
 const mutations = {
     setSubreddits: (state, subreddits) => state.subreddits = subreddits,
     newSubreddit: (state, subreddit) => state.subreddits.push(subreddit),
     setSubreddit: (state, subreddit) => state.subreddit = subreddit,
-    setDisplayViewAll: (state, displayViewAll) => state.displayViewAll = displayViewAll
+    setDisplayViewAll: (state, displayViewAll) => state.displayViewAll = displayViewAll,
+    removeSubreddit: (state, id) => state.subreddits = state.subreddits.filter(subreddit => subreddit.id !== id),
+
 }
 
 export default {
     state,
     getters,
+    
     actions,
     mutations
 }
