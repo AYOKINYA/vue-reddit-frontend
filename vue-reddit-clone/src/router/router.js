@@ -11,6 +11,7 @@ import PostView from "../components/PostView.vue"
 import UserProfile from "../components/UserProfile.vue"
 import SubredditView from "../components/SubredditView.vue";
 import EditPost from "../components/EditPost.vue";
+import Admin from "../components/Admin.vue";
 
 Vue.use(Router);
 
@@ -58,14 +59,20 @@ export default new Router({
             component: PostView
         },
         {
+            path: "/view-subreddit/:id",
+            name: "SubredditView",
+            component: SubredditView
+        },
+        {
             path: "/user-profile/:username",
             name: "UserProfile",
             component: UserProfile
         },
         {
-            path: "/view-subreddit/:id",
-            name: "SubredditView",
-            component: SubredditView
+            path: "/admin",
+            name: "Admin",
+            component: Admin
         }
+
     ]
 })

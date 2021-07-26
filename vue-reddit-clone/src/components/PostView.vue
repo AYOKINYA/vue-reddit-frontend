@@ -90,7 +90,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['getPost', 'createComment', 'getCommentsForPost', 'removePost']),
+        ...mapActions(['getPost', 'createComment', 'getCommentsForPost', 'deletePost']),
         isOwner() {
             if (this.post.userName === localStorage.getItem("username")) {
                 return true;
@@ -114,7 +114,7 @@ export default {
         updateVote() {
             this.getPost(this.$route.params.id);
         },
-        deletePost() {
+        removePost() {
             if (window.confirm("Are you sure?")) {
                 this.deletePost(this.$route.params.id);
             }
