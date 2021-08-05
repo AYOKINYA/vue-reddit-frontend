@@ -12,6 +12,7 @@ import UserProfile from "../components/UserProfile.vue"
 import SubredditView from "../components/SubredditView.vue";
 import EditPost from "../components/EditPost.vue";
 import Admin from "../components/Admin.vue";
+import SearchResult from "../components/SearchResult.vue";
 
 Vue.use(Router);
 
@@ -72,6 +73,12 @@ export default new Router({
             path: "/admin",
             name: "Admin",
             component: Admin
+        },
+        {
+            path: "/search",
+            name: "SearchResult",
+            component: SearchResult,
+            props: true
         }
 
     ]
